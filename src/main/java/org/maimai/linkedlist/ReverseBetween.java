@@ -145,7 +145,7 @@ public class ReverseBetween {
         // 5
         ListNode cur = right.next;
 
-        // 开始截取
+        // 开始切断
         pre.next = null;
         right.next = null;
 
