@@ -5,9 +5,10 @@ import org.maimai.base.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
+ * BM27 按之字形顺序打印二叉树
+ *
  * @Date 2022/12/20 17:16
  * @Author chenqi
  */
@@ -23,7 +24,7 @@ public class LevelOrderTwo {
             ArrayList<Integer> arrayList = new ArrayList();
             for (int i = list.size(); i > 0; i--) {
                 TreeNode poll = list.poll();
-                if (linkedList.size() % 2 == 0) {
+                if (result.size() % 2 == 0) {
                     linkedList.addLast(poll.val);
                 } else {
                     linkedList.addFirst(poll.val);
@@ -40,6 +41,7 @@ public class LevelOrderTwo {
         }
         return result;
     }
+
     @Test
     public void t() {
         TreeNode node = new TreeNode(3);
