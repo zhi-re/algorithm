@@ -1,5 +1,7 @@
 package org.maimai.hash;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -61,6 +63,11 @@ public class Permute {
         int temp = list.get(a);
         list.set(a, list.get(b));
         list.set(b, temp);
+    }
+
+    @Test
+    public void t() {
+        System.out.println(permute(new int[]{1, 2}));
     }
 
 }
