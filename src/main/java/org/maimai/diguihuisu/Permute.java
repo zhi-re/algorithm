@@ -1,4 +1,4 @@
-package org.maimai.hash;
+package org.maimai.diguihuisu;
 
 import org.junit.Test;
 

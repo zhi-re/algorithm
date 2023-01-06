@@ -1,4 +1,4 @@
-package org.maimai.hash;
+package org.maimai.diguihuisu;
 
 /**
  * BM57 岛屿数量
