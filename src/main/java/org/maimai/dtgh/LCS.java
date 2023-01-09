@@ -1,5 +1,7 @@
 package org.maimai.dtgh;
 
+import org.junit.Test;
+
 /**
  * BM66 最长公共子串
  * <p>
@@ -31,6 +33,9 @@ public class LCS {
         int index = 0;
         for (int i = 1; i <= str1.length(); i++) {
             for (int j = 1; j <= str2.length(); j++) {
+                System.out.println(i);
+                System.out.println(j);
+                System.out.println();
                 if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                 } else {
@@ -43,6 +48,49 @@ public class LCS {
             }
         }
         return str1.substring(index - max + 1, index + 1);
+    }
+
+    public String LCS2(String str1, String str2) {
+        if (str1 == null || str2 == null || str1.equals(" ") || str2.equals(" ")) {
+            return "-1";
+        }
+        // 动态规划  二维数组，斜下来就是最长字串
+        int str1len = str1.length();
+        int str2len = str2.length();
+        int maxLen = 0;
+        int index = 0;
+        // 定义一个二维数组
+        int[][] dp = new int[str1len][str2len];
+        // 第一步：划分
+        for (int i = 0; i < str1len; i++) {
+            for (int j = 0; j < str2len; j++) {
+                if (str1.charAt(i) == str2.charAt(j)) {
+                    if (j == 0 && i == 0) {
+                        dp[i][j] = 1;
+                        maxLen = dp[i][j];
+                        index = i;
+                    } else {
+                        dp[i][j] = dp[i - 1][j - 1] + 1;
+                        if (maxLen <= dp[i][j]) {
+                            maxLen = dp[i][j];
+                            index = i;
+                        }
+                    }
+                }
+            }
+        }
+        if (maxLen == 0) {
+            return "-1";
+        }
+        return str1.substring(index - maxLen + 1, index + 1);
+    }
+
+
+    @Test
+    public void t() {
+        System.out.println(LCS("1AB2345CD", "12345EF"));
+        System.out.println(LCS2("1AB2345CD", "12345EF"));
+        System.out.println("ABC".charAt(1));
     }
 
 
