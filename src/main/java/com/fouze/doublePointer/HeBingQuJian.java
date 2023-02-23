@@ -1,11 +1,16 @@
 package com.fouze.doublePointer;
 
+import com.alibaba.fastjson.JSON;
+import lombok.Data;
+import org.assertj.core.util.Lists;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * BM89 合并区间
+ *
  * @Date 2023-02-15 20:07
  * @Author chenqi
  */
@@ -19,6 +24,7 @@ public class HeBingQuJian {
      * @return
      */
     public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
+        System.out.println(JSON.toJSONString(intervals));
         ArrayList<Interval> res = new ArrayList<>();
         //去除特殊情况
         if (intervals.size() == 0) {
@@ -34,6 +40,8 @@ public class HeBingQuJian {
         });
         res.add(intervals.get(0));
         int count = 0;
+        // [[10,30],[20,60],[80,100],[150,180]]
+        // [[10,60],[80,100],[150,180]]
         for (int i = 1; i < intervals.size(); i++) {
             Interval o1 = intervals.get(i);
             Interval origin = res.get(count);
@@ -54,6 +62,16 @@ public class HeBingQuJian {
         return res;
     }
 
+    @Test
+    public void t() {
+        ArrayList<Interval> intervals = Lists.newArrayList();
+        intervals.add(new Interval(10, 20));
+        intervals.add(new Interval(15, 50));
+        ArrayList<Interval> merge = merge(intervals);
+        System.out.println(JSON.toJSONString(merge));
+    }
+
+    @Data
     public class Interval {
         int start;
         int end;
